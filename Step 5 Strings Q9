@@ -1,0 +1,44 @@
+class Solution {
+public:
+
+    // Time Complexity For This Solution is O(n * n * 26);
+    // Space Complexity is O(1);
+
+    int beauty(int * freq)
+    {
+        // Take Max and Min To Count And Store MAx Freq And Freq And Min Freq;
+        // Of The Substring Then Return max - min;
+        int maxFreq = INT_MIN, minFreq = INT_MAX;
+        for(auto i = 0; i<26; i++)
+        {
+            maxFreq = max(maxFreq, freq[i]);
+            if(freq[i] >= 1)
+            {
+                minFreq = min(minFreq, freq[i]);
+            }
+        }
+
+        return maxFreq - minFreq;
+    }
+
+    int beautySum(string s) {
+        
+        int ans = 0;
+
+        // We Generate All the Substrings of The s
+        for(auto i = 0; i<s.length(); i++)
+        {
+            // We'll Take Freq Array To Increment Freq at Every Ith Iteraton
+            int freq[26] = {0};
+            for(auto j = i; j<s.length(); j++)
+            {
+                // Increase Freq In Freq Array Of Every S[j];
+                freq[s[j] - 'a']++;
+                // Then Add the Beauty Of That Substring Into Our Answer
+                ans += beauty(freq);
+            }
+        }
+
+        return ans;
+    }
+};
