@@ -1,0 +1,28 @@
+class Solution {
+public:
+    
+    // Time - > O(NlogN) + Length Of Smallest String;
+    ?? Space --> O(1) or O(N)
+      
+    string longestCommonPrefix(vector<string>& strs) {
+        
+        if(strs.empty()) return "";
+        sort(strs.begin(),strs.end());
+
+        int n=strs.size();
+        string a=strs[0], b=strs[n-1], ans="";
+
+        int i = 0;
+        while(i < a.size() && i < b.size())
+        {
+            if(a[i] == b[i])
+            {
+                ans += a[i];
+                i++;
+            } 
+            else break;
+        }
+        return ans;
+        
+    }
+};
