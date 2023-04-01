@@ -1,0 +1,24 @@
+class Solution {
+public:
+    bool rotateString(string s1, string s2) {
+        
+        if(s1 == s2) return true;
+        queue<char> q1, q2;
+
+        for(auto i : s1) q1.push(i);
+        for(auto i : s2) q2.push(i);
+
+        int k = s2.length() - 1;
+        while(k!= 0)
+        {
+            char c = q1.front();
+            q1.pop();
+            q1.push(c);
+
+            if(q1 == q2) return true;
+            k--;
+        }
+
+        return false;   
+    }
+};
